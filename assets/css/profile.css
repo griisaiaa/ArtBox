@@ -1,0 +1,278 @@
+/* profile.css - Стили для страницы профиля */
+
+/* Заголовок страницы */
+.profile-title {
+    font-size: 36px;
+    text-align: left;
+    margin: 40px 0 20px;
+    font-weight: bold;
+}
+
+/* Основной контент профиля */
+.profile-content {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* Боковая панель навигации */
+.profile-sidebar {
+    flex: 0 0 280px;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+/* Информация пользователя */
+.user-info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-details {
+    flex: 1;
+}
+
+.user-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+}
+
+.user-email {
+    font-size: 14px;
+    color: var(--gray-text);
+    margin: 0;
+}
+
+/* Разделительная линия пользователя */
+.user-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 20px 0;
+}
+
+.hist-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 0;
+}
+
+.profile-nav__list {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-nav__item {
+    margin-bottom: 15px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.profile-nav__item.active {
+    background-color: var(--primary-color);
+}
+
+.profile-nav__link {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.profile-nav__item.active .profile-nav__link {
+    color: white;
+}
+
+.profile-nav__link:hover {
+    background-color: rgba(255, 107, 53, 0.1);
+}
+
+.profile-nav__item.active .profile-nav__link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profile-nav__icon {
+    margin-right: 15px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-nav__text-exit {
+    color: #EE4F57;
+}
+
+/* Основная область профиля */
+.profile-main {
+    flex: 1;
+}
+
+.profile-section-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Список заказов */
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.order-card {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-number {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.order-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.order-status.delivered {
+    color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.order-status.processing {
+    color: #C5A754;
+    background-color: #FFEFC3;
+}
+
+.order-status.canceled {
+    color: #F44336;
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+.status-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.order-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gray-text);
+}
+
+.date-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* Центрированная информация о заказе */
+.order-info-centered {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 5px 0;
+}
+
+.order-items, .order-total {
+    margin: 0;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.order-more {
+    color: var(--secondary-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+    text-align: center;
+    display: block;
+    margin-top: 5px;
+}
+
+.order-more:hover {
+    color: #e05a2b;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .profile-content {
+        flex-direction: column;
+    }
+    
+    .profile-sidebar {
+        flex: 1;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-title {
+        font-size: 28px;
+    }
+    
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-title {
+        font-size: 24px;
+    }
+    
+    .profile-sidebar {
+        padding: 15px;
+    }
+    
+    .order-card {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,95 @@
+/* 404.css - Стили для страницы 404 */
+
+/* Основной контент страницы 404 */
+.error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    text-align: center;
+    padding: 60px 0;
+}
+
+/* Изображение ошибки */
+.error-image {
+    margin-bottom: 40px;
+    max-width: 400px;
+}
+
+.error-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Текст ошибки */
+.error-text {
+    max-width: 500px;
+}
+
+.error-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    line-height: 1.4;
+    color: var(--text-color);
+}
+
+/* Кнопка возврата */
+.error-btn {
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.error-btn:hover {
+    background-color: #e05a2b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .error-content {
+        padding: 40px 0;
+        min-height: 60vh;
+    }
+    
+    .error-image {
+        max-width: 300px;
+        margin-bottom: 30px;
+    }
+    
+    .error-title {
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+    
+    .error-btn {
+        padding: 12px 25px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .error-content {
+        padding: 30px 0;
+    }
+    
+    .error-image {
+        max-width: 250px;
+        margin-bottom: 25px;
+    }
+    
+    .error-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    
+    .error-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}

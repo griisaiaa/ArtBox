@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtBox - Каталог</title>
+    <link rel="stylesheet" href="./assets/css/global.css">
+    <link rel="stylesheet" href="./assets/css/catalog.css">
+    <!-- Подключаем общий JS и специфичный для каталога -->
+    <script src="./assets/js/script.js" defer></script>
+    <script src="./assets/js/catalog.js" defer></script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="index.html" class="logo">
+                    <span class="logo__text">ArtBox</span>
+                </a>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="catalog.html" class="nav__link active">Каталог</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="contacts.html" class="nav__link">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header__actions">
+                    <div class="search">
+                        <input type="text" class="search__input" placeholder="Поиск...">
+                        <button class="search__btn">
+                            <img src="./assets/img/header-search-input-icon.png" alt="Поиск" class="search__icon">
+                        </button>
+                    </div>
+                    
+                    <div class="actions">
+                        <button class="action-btn" id="profile-btn">
+                            <img src="./assets/img/header-profile-icon.png" alt="Профиль" class="action-icon">
+                        </button>
+                        <button class="action-btn">
+                            <img src="./assets/img/header-favoruite-icon.png" alt="Избранное" class="action-icon">
+                        </button>
+                        <button class="action-btn">
+                            <img src="./assets/img/header-basket-icon.png" alt="Корзина" class="action-icon">
+                        </button>
+                    </div>
+                    
+                    <button class="burger" id="burger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main class="main">
+        <div class="container">
+            <h1 class="catalog-title">Каталог товаров</h1>
+            
+            <!-- Блок с информацией о количестве товаров и сортировкой -->
+            <div class="catalog-header">
+                <div class="products-count">Найдено товаров: 9</div>
+                <div class="sort-filter">
+                    <label for="sort-select">Сортировка:</label>
+                    <select id="sort-select" class="sort-select">
+                        <option value="popular">По популярности</option>
+                        <option value="price-asc">По возрастанию цены</option>
+                        <option value="price-desc">По убыванию цены</option>
+                        <option value="name">По названию</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="catalog-content">
+                <!-- Боковая панель с фильтрами -->
+                <aside class="filters">
+                    <div class="filters-section">
+                        <h3 class="filters-title">Категории</h3>
+                        <ul class="filters-list">
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="category" value="all" checked>
+                                    <span class="radiomark"></span>
+                                    Все категории
+                                </label>
+                            </li>
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="category" value="paints">
+                                    <span class="radiomark"></span>
+                                    Краски
+                                </label>
+                            </li>
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="category" value="brushes">
+                                    <span class="radiomark"></span>
+                                    Кисти
+                                </label>
+                            </li>
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="category" value="canvases">
+                                    <span class="radiomark"></span>
+                                    Холсты
+                                </label>
+                            </li>
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="category" value="paper">
+                                    <span class="radiomark"></span>
+                                    Бумага
+                                </label>
+                            </li>
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="category" value="stationery">
+                                    <span class="radiomark"></span>
+                                    Канцелярия
+                                </label>
+                            </li>
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="category" value="easels">
+                                    <span class="radiomark"></span>
+                                    Мольберты
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filters-section">
+                        <h3 class="filters-title">Цена</h3>
+                        <div class="price-filter">
+                            <div class="price-inputs">
+                                <div class="price-input">
+                                    <input type="number" id="min-price" value="0" min="0" placeholder="0">
+                                    <span>₽</span>
+                                </div>
+                                <span class="price-separator">-</span>
+                                <div class="price-input">
+                                    <input type="number" id="max-price" value="5000" min="0" placeholder="5000">
+                                    <span>₽</span>
+                                </div>
+                            </div>
+                            <div class="price-range">
+                                <div class="range-slider">
+                                    <div class="range-selected"></div>
+                                </div>
+                                <div class="range-input">
+                                    <input type="range" class="range-min" min="0" max="10000" value="0" step="100">
+                                    <input type="range" class="range-max" min="0" max="10000" value="5000" step="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-section">
+                        <h3 class="filters-title">Бренд</h3>
+                        <ul class="filters-list">
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="brand" value="all" checked>
+                                    <span class="radiomark"></span>
+                                    Все бренды
+                                </label>
+                            </li>
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="brand" value="artmaster">
+                                    <span class="radiomark"></span>
+                                    ArtMaster
+                                </label>
+                            </li>
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="brand" value="creativeline">
+                                    <span class="radiomark"></span>
+                                    CreativeLine
+                                </label>
+                            </li>
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="brand" value="proart">
+                                    <span class="radiomark"></span>
+                                    ProArt
+                                </label>
+                            </li>
+                            <li class="filter-item">
+                                <label class="filter-radio">
+                                    <input type="radio" name="brand" value="artistpro">
+                                    <span class="radiomark"></span>
+                                    ArtistPro
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn btn--primary filters-apply">Применить фильтры</button>
+                </aside>
+                
+                <!-- Сетка товаров -->
+                <section class="products">
+                    <div class="products-grid">
+                        <!-- Карточка товара 1 -->
+                        <div class="product-card">
+                            <button class="product-card__favourite">
+                                <img src="./assets/img/product-cart-favoruite-icon.png" alt="В избранное">
+                            </button>
+                            <div class="product-card__image">
+                                <img src="./assets/img/product-cart-img2.png" alt="Профессиональные кисти для живописи, 12 шт">
+                            </div>
+                            <div class="product-card__content">
+                                <h3 class="product-card__title">Профессиональные кисти для живописи, 12 шт</h3>
+                                <div class="product-card__rating">
+                                    <div class="stars">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-notactive-star-icon.png" alt="☆">
+                                    </div>
+                                    <span class="rating-count">(200)</span>
+                                </div>
+                                <div class="product-card__footer">
+                                    <span class="product-card__price">899 ₽</span>
+                                    <a href="product-info.html" class="btn btn--cart">
+                                        <img src="./assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
+                                        В корзину
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка товара 2 -->
+                        <div class="product-card">
+                            <button class="product-card__favourite">
+                                <img src="./assets/img/product-cart-favoruite-icon.png" alt="В избранное">
+                            </button>
+                            <div class="product-card__image">
+                                <img src="./assets/img/product-cart-img1.png" alt="Набор акриловых красок 24 цвета">
+                            </div>
+                            <div class="product-card__content">
+                                <h3 class="product-card__title">Набор акриловых красок 24 цвета</h3>
+                                <div class="product-card__rating">
+                                    <div class="stars">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-notactive-star-icon.png" alt="☆">
+                                    </div>
+                                    <span class="rating-count">(150)</span>
+                                </div>
+                                <div class="product-card__footer">
+                                    <span class="product-card__price">1299 ₽</span>
+                                    <a href="product-info.html" class="btn btn--cart">
+                                        <img src="./assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
+                                        В корзину
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка товара 3 -->
+                        <div class="product-card">
+                            <button class="product-card__favourite">
+                                <img src="./assets/img/product-cart-favoruite-icon.png" alt="В избранное">
+                            </button>
+                            <div class="product-card__image">
+                                <img src="./assets/img/product-cart-img4.png" alt="Акварельные краски 36 цветов">
+                            </div>
+                            <div class="product-card__content">
+                                <h3 class="product-card__title">Акварельные краски 36 цветов</h3>
+                                <div class="product-card__rating">
+                                    <div class="stars">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-notactive-star-icon.png" alt="☆">
+                                    </div>
+                                    <span class="rating-count">(107)</span>
+                                </div>
+                                <div class="product-card__footer">
+                                    <span class="product-card__price">1599 ₽</span>
+                                    <a href="product-info.html" class="btn btn--cart">
+                                        <img src="./assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
+                                        В корзину
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка товара 4 -->
+                        <div class="product-card">
+                            <button class="product-card__favourite">
+                                <img src="./assets/img/product-cart-favoruite-icon.png" alt="В избранное">
+                            </button>
+                            <div class="product-card__image">
+                                <img src="./assets/img/product-cart-img3.png" alt="Холст на подрамнике 40x50 см">
+                            </div>
+                            <div class="product-card__content">
+                                <h3 class="product-card__title">Холст на подрамнике 40x50 см</h3>
+                                <div class="product-card__rating">
+                                    <div class="stars">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-notactive-star-icon.png" alt="☆">
+                                    </div>
+                                    <span class="rating-count">(90)</span>
+                                </div>
+                                <div class="product-card__footer">
+                                    <span class="product-card__price">549 ₽</span>
+                                    <a href="product-info.html" class="btn btn--cart">
+                                        <img src="./assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
+                                        В корзину
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка товара 5 -->
+                        <div class="product-card">
+                            <button class="product-card__favourite">
+                                <img src="./assets/img/product-cart-favoruite-icon.png" alt="В избранное">
+                            </button>
+                            <div class="product-card__image">
+                                <img src="./assets/img/product-cart-img2.png" alt="Профессиональные кисти для живописи, 12 шт">
+                            </div>
+                            <div class="product-card__content">
+                                <h3 class="product-card__title">Профессиональные кисти для живописи, 12 шт</h3>
+                                <div class="product-card__rating">
+                                    <div class="stars">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-notactive-star-icon.png" alt="☆">
+                                    </div>
+                                    <span class="rating-count">(200)</span>
+                                </div>
+                                <div class="product-card__footer">
+                                    <span class="product-card__price">899 ₽</span>
+                                    <a href="product-info.html" class="btn btn--cart">
+                                        <img src="./assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
+                                        В корзину
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка товара 6 -->
+                        <div class="product-card">
+                            <button class="product-card__favourite">
+                                <img src="./assets/img/product-cart-favoruite-icon.png" alt="В избранное">
+                            </button>
+                            <div class="product-card__image">
+                                <img src="./assets/img/product-cart-img3.png" alt="Холст на подрамнике 40x50 см">
+                            </div>
+                            <div class="product-card__content">
+                                <h3 class="product-card__title">Холст на подрамнике 40x50 см</h3>
+                                <div class="product-card__rating">
+                                    <div class="stars">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-notactive-star-icon.png" alt="☆">
+                                    </div>
+                                    <span class="rating-count">(90)</span>
+                                </div>
+                                <div class="product-card__footer">
+                                    <span class="product-card__price">549 ₽</span>
+                                    <a href="product-info.html" class="btn btn--cart">
+                                        <img src="./assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
+                                        В корзину
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка товара 7 -->
+                        <div class="product-card">
+                            <button class="product-card__favourite">
+                                <img src="./assets/img/product-cart-favoruite-icon.png" alt="В избранное">
+                            </button>
+                            <div class="product-card__image">
+                                <img src="./assets/img/product-cart-img2.png" alt="Профессиональные кисти для живописи, 12 шт">
+                            </div>
+                            <div class="product-card__content">
+                                <h3 class="product-card__title">Профессиональные кисти для живописи, 12 шт</h3>
+                                <div class="product-card__rating">
+                                    <div class="stars">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-notactive-star-icon.png" alt="☆">
+                                    </div>
+                                    <span class="rating-count">(200)</span>
+                                </div>
+                                <div class="product-card__footer">
+                                    <span class="product-card__price">1299 ₽</span>
+                                    <a href="product-info.html" class="btn btn--cart">
+                                        <img src="./assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
+                                        В корзину
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка товара 8 -->
+                        <div class="product-card">
+                            <button class="product-card__favourite">
+                                <img src="./assets/img/product-cart-favoruite-icon.png" alt="В избранное">
+                            </button>
+                            <div class="product-card__image">
+                                <img src="./assets/img/product-cart-img1.png" alt="Набор акриловых красок 24 цвета">
+                            </div>
+                            <div class="product-card__content">
+                                <h3 class="product-card__title">Набор акриловых красок 24 цвета</h3>
+                                <div class="product-card__rating">
+                                    <div class="stars">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-notactive-star-icon.png" alt="☆">
+                                    </div>
+                                    <span class="rating-count">(150)</span>
+                                </div>
+                                <div class="product-card__footer">
+                                    <span class="product-card__price">1299 ₽</span>
+                                    <a href="product-info.html" class="btn btn--cart">
+                                        <img src="./assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
+                                        В корзину
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Карточка товара 9 -->
+                        <div class="product-card">
+                            <button class="product-card__favourite">
+                                <img src="./assets/img/product-cart-favoruite-icon.png" alt="В избранное">
+                            </button>
+                            <div class="product-card__image">
+                                <img src="./assets/img/product-cart-img4.png" alt="Акварельные краски 36 цветов">
+                            </div>
+                            <div class="product-card__content">
+                                <h3 class="product-card__title">Акварельные краски 36 цветов</h3>
+                                <div class="product-card__rating">
+                                    <div class="stars">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                                        <img src="./assets/img/product-cart-notactive-star-icon.png" alt="☆">
+                                    </div>
+                                    <span class="rating-count">(107)</span>
+                                </div>
+                                <div class="product-card__footer">
+                                    <span class="product-card__price">899 ₽</span>
+                                    <a href="product-info.html" class="btn btn--cart">
+                                        <img src="./assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
+                                        В корзину
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <div class="footer-logo">
+                        <img src="./assets/img/footer-paint-icon.png" alt="ArtBox" class="footer-logo__icon">
+                        <span class="footer-logo__text">ArtBox</span>
+                    </div>
+                    <p class="footer__description">Все для творчества в одном месте. Вдохновляйте и ожидайте создавать шедевры.</p>
+                </div>
+                
+                <div class="footer__nav">
+                    <div class="footer__column">
+                        <h3 class="footer__title">Каталог</h3>
+                        <ul class="footer__list">
+                            <li><a href="#" class="footer__link">Краски</a></li>
+                            <li><a href="#" class="footer__link">Кисти</a></li>
+                            <li><a href="#" class="footer__link">Холсты</a></li>
+                            <li><a href="#" class="footer__link">Канцелярия</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h3 class="footer__title">Информация</h3>
+                        <ul class="footer__list">
+                            <li><a href="about.html" class="footer__link">О нас</a></li>
+                            <li><a href="contacts.html" class="footer__link">Контакты</a></li>
+                            <li><a href="#" class="footer__link">Доставка и оплата</a></li>
+                            <li><a href="#" class="footer__link">Возврат товара</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h3 class="footer__title">Контакты</h3>
+                        <ul class="footer__list">
+                            <li>+7 (999) 123-45-67</li>
+                            <li>info@artbox.ru</li>
+                            <li>Пн-Пт: 9:00 - 18:00</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 ArtBox. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно входа -->
+    <div class="modal" id="login-modal">
+        <div class="modal__content">
+            <button class="modal__close" id="close-login-modal">&times;</button>
+            <div class="modal__tabs">
+                <button class="modal__tab modal__tab--active" data-tab="login">Вход</button>
+                <button class="modal__tab" data-tab="register">Регистрация</button>
+            </div>
+            
+            <div class="modal__body">
+                <form class="modal__form modal__form--active" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email" class="form-label">Email</label>
+                        <input type="email" id="login-email" class="form-input" placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password" class="form-label">Пароль</label>
+                        <input type="password" id="login-password" class="form-input" placeholder="Пароль">
+                    </div>
+                    
+                    <button type="submit" class="btn btn--primary btn--full">Войти</button>
+                    
+                    <div class="form-footer">
+                        <a href="#" class="form-link">Забыли пароль?</a>
+                    </div>
+                </form>
+                
+                <form class="modal__form" id="register-form">
+                    <div class="form-group">
+                        <label for="register-name" class="form-label">Имя</label>
+                        <input type="text" id="register-name" class="form-input" placeholder="Ваше имя">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-email" class="form-label">Email</label>
+                        <input type="email" id="register-email" class="form-input" placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password" class="form-label">Пароль</label>
+                        <input type="password" id="register-password" class="form-input" placeholder="Пароль">
+                    </div>
+                    
+                    <button type="submit" class="btn btn--primary btn--full">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

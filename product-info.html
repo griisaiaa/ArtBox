@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtBox - Набор акриловых красок "Василина" 24 цвета</title>
+    <link rel="stylesheet" href="./assets/css/global.css">
+    <link rel="stylesheet" href="./assets/css/product-info.css">
+    <script src="./assets/js/script.js" defer></script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="index.html" class="logo">
+                    <span class="logo__text">ArtBox</span>
+                </a>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="catalog.html" class="nav__link active">Каталог</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="contacts.html" class="nav__link">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header__actions">
+                    <div class="search">
+                        <input type="text" class="search__input" placeholder="Поиск...">
+                        <button class="search__btn">
+                            <img src="./assets/img/header-search-input-icon.png" alt="Поиск" class="search__icon">
+                        </button>
+                    </div>
+                    
+                    <div class="actions">
+                        <button class="action-btn" id="profile-btn">
+                            <img src="./assets/img/header-profile-icon.png" alt="Профиль" class="action-icon">
+                        </button>
+                        <button class="action-btn">
+                            <img src="./assets/img/header-favoruite-icon.png" alt="Избранное" class="action-icon">
+                        </button>
+                        <button class="action-btn">
+                            <img src="./assets/img/header-basket-icon.png" alt="Корзина" class="action-icon">
+                        </button>
+                    </div>
+                    
+                    <button class="burger" id="burger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main class="main">
+        <div class="container">
+            <!-- Хлебные крошки -->
+            <div class="breadcrumbs">
+                <a href="catalog.html" class="breadcrumbs__link">← Назад к каталогу</a>
+            </div>
+            
+            <!-- Детали товара -->
+            <div class="product-details">
+                <!-- Галерея изображений -->
+                <div class="product-gallery">
+                    <div class="gallery-main">
+                        <img src="./assets/img/tovar-info-main-img.png" alt="Набор акриловых красок Василина 24 цвета" class="gallery-main__img">
+                    </div>
+                    <div class="gallery-thumbs">
+                        <div class="gallery-thumb">
+                            <img src="./assets/img/tovar-info-secondary-img1.png" alt="Набор акриловых красок Василина 24 цвета - вид 1" class="gallery-thumb__img">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="./assets/img/tovar-info-secondary-img2.png" alt="Набор акриловых красок Василина 24 цвета - вид 2" class="gallery-thumb__img">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="./assets/img/tovar-info-secondary-img3.png" alt="Набор акриловых красок Василина 24 цвета - вид 3" class="gallery-thumb__img">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Информация о товаре -->
+                <div class="product-info">
+                    <div class="product-header">
+                        <h1 class="product-title">Набор акриловых красок "Василина" 24 цвета</h1>
+                    </div>
+                    
+                    <div class="product-rating">
+                        <div class="stars">
+                            <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                            <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                            <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                            <img src="./assets/img/product-cart-active-star-icon.png" alt="★">
+                            <img src="./assets/img/product-cart-notactive-star-icon.png" alt="☆">
+                        </div>
+                        <span class="rating-count">(150)</span>
+                    </div>
+                    
+                    <div class="product-pricing">
+                        <span class="product-price">2490 ₽</span>
+                        <span class="product-old-price">3200 ₽</span>
+                        <span class="product-discount">-22%</span>
+                    </div>
+                    
+                    <div class="product-quantity-row">
+                        <div class="quantity-selector">
+                            <span class="quantity-title">Количество</span>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn">-</button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-btn">+</button>
+                            </div>
+                        </div>
+                        <p class="in-stock">В наличии: 28 шт.</p>
+                    </div>
+                    
+                    <div class="product-actions">
+                        <button class="btn btn--cart btn--full">
+                            <img src="./assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
+                            Добавить в корзину
+                        </button>
+                        <button class="product-favourite">
+                            <img src="./assets/img/tovar-info-favourite-icon.png" alt="Добавить в избранное">
+                        </button>
+                    </div>
+                    
+                    <!-- Преимущества -->
+                    <div class="product-benefits">
+                        <div class="benefit">
+                            <div class="benefit-icon" id="benefit-icon1">
+                                <img src="./assets/img/tovar-info-stats-icon1.png" alt="Бесплатная доставка">
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Бесплатная доставка</h4>
+                                <p>От 3000 ₽</p>
+                            </div>
+                        </div>
+                        <div class="benefit">
+                            <div class="benefit-icon" id="benefit-icon2">
+                                <img src="./assets/img/tovar-info-stats-icon2.png" alt="Гарантия качества">
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Гарантия качества</h4>
+                                <p>Возврат 30 дней</p>
+                            </div>
+                        </div>
+                        <div class="benefit">
+                            <div class="benefit-icon" id="benefit-icon3">
+                                <img src="./assets/img/tovar-info-stats-icon3.png" alt="Оригинальная продукция">
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Оригинальная продукция</h4>
+                                <p>Только от производителя</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Табы описания и характеристик -->
+            <div class="product-tabs">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-tab="description">Описание</button>
+                    <button class="tab-btn" data-tab="specifications">Характеристики</button>
+                </div>
+                
+                <div class="tabs-content">
+                    <div class="tab-panel active" id="description">
+                        <p>Профессиональные художественные принадлежности высокого качества. Идеально подходят как для начинающих художников, так и для профессионалов.</p>
+                        <p>Изготовлено из экологически чистых материалов. Яркие, насыщенные цвета, которые не выгорают со временем. Легко смешиваются между собой.</p>
+                        <p>Отличная адгезия к различным поверхностям: холст, бумага, дерево, картон.</p>
+                    </div>
+                    <div class="tab-panel" id="specifications">
+                        <p>Характеристики товара будут здесь.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <div class="footer-logo">
+                        <img src="./assets/img/footer-paint-icon.png" alt="ArtBox" class="footer-logo__icon">
+                        <span class="footer-logo__text">ArtBox</span>
+                    </div>
+                    <p class="footer__description">Все для творчества в одном месте. Вдохновляйте и ожидайте создавать шедевры.</p>
+                </div>
+                
+                <div class="footer__nav">
+                    <div class="footer__column">
+                        <h3 class="footer__title">Каталог</h3>
+                        <ul class="footer__list">
+                            <li><a href="#" class="footer__link">Краски</a></li>
+                            <li><a href="#" class="footer__link">Кисти</a></li>
+                            <li><a href="#" class="footer__link">Холсты</a></li>
+                            <li><a href="#" class="footer__link">Канцелярия</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h3 class="footer__title">Информация</h3>
+                        <ul class="footer__list">
+                            <li><a href="about.html" class="footer__link">О нас</a></li>
+                            <li><a href="contacts.html" class="footer__link">Контакты</a></li>
+                            <li><a href="#" class="footer__link">Доставка и оплата</a></li>
+                            <li><a href="#" class="footer__link">Возврат товара</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h3 class="footer__title">Контакты</h3>
+                        <ul class="footer__list">
+                            <li>+7 (999) 123-45-67</li>
+                            <li>info@artbox.ru</li>
+                            <li>Пн-Пт: 9:00 - 18:00</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 ArtBox. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно входа -->
+    <div class="modal" id="login-modal">
+        <div class="modal__content">
+            <button class="modal__close" id="close-login-modal">&times;</button>
+            <div class="modal__tabs">
+                <button class="modal__tab modal__tab--active" data-tab="login">Вход</button>
+                <button class="modal__tab" data-tab="register">Регистрация</button>
+            </div>
+            
+            <div class="modal__body">
+                <form class="modal__form modal__form--active" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email" class="form-label">Email</label>
+                        <input type="email" id="login-email" class="form-input" placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password" class="form-label">Пароль</label>
+                        <input type="password" id="login-password" class="form-input" placeholder="Пароль">
+                    </div>
+                    
+                    <button type="submit" class="btn btn--primary btn--full">Войти</button>
+                    
+                    <div class="form-footer">
+                        <a href="#" class="form-link">Забыли пароль?</a>
+                    </div>
+                </form>
+                
+                <form class="modal__form" id="register-form">
+                    <div class="form-group">
+                        <label for="register-name" class="form-label">Имя</label>
+                        <input type="text" id="register-name" class="form-input" placeholder="Ваше имя">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-email" class="form-label">Email</label>
+                        <input type="email" id="register-email" class="form-input" placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password" class="form-label">Пароль</label>
+                        <input type="password" id="register-password" class="form-input" placeholder="Пароль">
+                    </div>
+                    
+                    <button type="submit" class="btn btn--primary btn--full">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Табы описания и характеристик
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Убираем активный класс у всех кнопок и панелей
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabPanels.forEach(p => p.classList.remove('active'));
+                    
+                    // Добавляем активный класс к текущей кнопке и соответствующей панели
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+            
+            // Управление количеством товара
+            const quantityValue = document.querySelector('.quantity-value');
+            const minusBtn = document.querySelector('.quantity-btn:first-child');
+            const plusBtn = document.querySelector('.quantity-btn:last-child');
+            
+            minusBtn.addEventListener('click', function() {
+                let currentValue = parseInt(quantityValue.textContent);
+                if (currentValue > 1) {
+                    quantityValue.textContent = currentValue - 1;
+                }
+            });
+            
+            plusBtn.addEventListener('click', function() {
+                let currentValue = parseInt(quantityValue.textContent);
+                quantityValue.textContent = currentValue + 1;
+            });
+        });
+    </script>
+</body>
+</html>

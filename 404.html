@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtBox - Страница не найдена</title>
+    <link rel="stylesheet" href="./assets/css/global.css">
+    <link rel="stylesheet" href="./assets/css/404.css">
+    <script src="./assets/js/script.js" defer></script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="index.html" class="logo">
+                    <span class="logo__text">ArtBox</span>
+                </a>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="catalog.html" class="nav__link">Каталог</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="contacts.html" class="nav__link">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header__actions">
+                    <div class="search">
+                        <input type="text" class="search__input" placeholder="Поиск товаров">
+                        <button class="search__btn">
+                            <img src="./assets/img/header-search-input-icon.png" alt="Поиск" class="search__icon">
+                        </button>
+                    </div>
+                    
+                    <div class="actions">
+                        <button class="action-btn" id="profile-btn">
+                            <img src="./assets/img/header-profile-icon.png" alt="Профиль" class="action-icon">
+                        </button>
+                        <button class="action-btn">
+                            <img src="./assets/img/header-favoruite-icon.png" alt="Избранное" class="action-icon">
+                        </button>
+                        <button class="action-btn">
+                            <img src="./assets/img/header-basket-icon.png" alt="Корзина" class="action-icon">
+                        </button>
+                    </div>
+                    
+                    <button class="burger" id="burger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main class="main">
+        <div class="container">
+            <div class="error-content">
+                <div class="error-image">
+                    <img src="./assets/img/404-img.png" alt="Страница не найдена">
+                </div>
+                
+                <div class="error-text">
+                    <h1 class="error-title">Ой! Кажется, вы заблудились в творческом беспорядке</h1>
+                    <a href="index.html" class="btn btn--primary error-btn">Вернуться на главную</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <div class="footer-logo">
+                        <img src="./assets/img/footer-paint-icon.png" alt="ArtBox" class="footer-logo__icon">
+                        <span class="footer-logo__text">ArtBox</span>
+                    </div>
+                    <p class="footer__description">Все для творчества в одном месте. Вдохновляем и помогаем создавать шедевры.</p>
+                </div>
+                
+                <div class="footer__nav">
+                    <div class="footer__column">
+                        <h3 class="footer__title">Каталог</h3>
+                        <ul class="footer__list">
+                            <li><a href="#" class="footer__link">Краски</a></li>
+                            <li><a href="#" class="footer__link">Кисти</a></li>
+                            <li><a href="#" class="footer__link">Холсты</a></li>
+                            <li><a href="#" class="footer__link">Канцелярия</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h3 class="footer__title">Информация</h3>
+                        <ul class="footer__list">
+                            <li><a href="about.html" class="footer__link">О нас</a></li>
+                            <li><a href="contacts.html" class="footer__link">Контакты</a></li>
+                            <li><a href="#" class="footer__link">Доставка и оплата</a></li>
+                            <li><a href="#" class="footer__link">Возврат товара</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h3 class="footer__title">Контакты</h3>
+                        <ul class="footer__list">
+                            <li>+7 (999) 123-45-67</li>
+                            <li>info@artbox.ru</li>
+                            <li>Пн-Пт: 9:00 - 18:00</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 ArtBox. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    <div class="modal" id="login-modal">
+        <div class="modal__content">
+            <button class="modal__close" id="close-login-modal">&times;</button>
+            <div class="modal__tabs">
+                <button class="modal__tab modal__tab--active" data-tab="login">Вход</button>
+                <button class="modal__tab" data-tab="register">Регистрация</button>
+            </div>
+            
+            <div class="modal__body">
+                <form class="modal__form modal__form--active" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email" class="form-label">Email</label>
+                        <input type="email" id="login-email" class="form-input" placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password" class="form-label">Пароль</label>
+                        <input type="password" id="login-password" class="form-input" placeholder="Пароль">
+                    </div>
+                    
+                    <button type="submit" class="btn btn--primary btn--full">Войти</button>
+                    
+                    <div class="form-footer">
+                        <a href="#" class="form-link">Забыли пароль?</a>
+                    </div>
+                </form>
+                
+                <form class="modal__form" id="register-form">
+                    <div class="form-group">
+                        <label for="register-name" class="form-label">Имя</label>
+                        <input type="text" id="register-name" class="form-input" placeholder="Ваше имя">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-email" class="form-label">Email</label>
+                        <input type="email" id="register-email" class="form-input" placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password" class="form-label">Пароль</label>
+                        <input type="password" id="register-password" class="form-input" placeholder="Пароль">
+                    </div>
+                    
+                    <button type="submit" class="btn btn--primary btn--full">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
