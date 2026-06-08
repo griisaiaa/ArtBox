@@ -1,0 +1,240 @@
+/* Стили для страницы контактов */
+
+/* Градиентный баннер */
+.gradient-banner {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    padding: 60px 0;
+    margin-bottom: 60px;
+}
+
+.banner-content {
+    text-align: center;
+}
+
+.banner-title {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.banner-subtitle {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Контент контактов */
+.contacts-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+/* Контактная информация */
+.contact-info {
+    padding: 30px;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+
+.contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.address-icon {
+    background-color: rgba(255, 107, 53, 0.1); /* Красный оттенок для адреса */
+}
+
+.phone-icon {
+    background-color: rgba(78, 205, 196, 0.1); /* Синий оттенок для телефона */
+}
+
+.email-icon {
+    background-color: rgba(255, 107, 53, 0.1); /* Красный оттенок для email */
+}
+
+.hours-icon {
+    background-color: rgba(78, 205, 196, 0.1); /* Желтый оттенок для часов работы */
+}
+
+.contact-text h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.contact-text p {
+    font-size: 14px;
+    color: var(--gray-text);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Форма обратной связи */
+.contact-form-section {
+    padding: 30px;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-input {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-textarea {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 120px;
+    transition: border-color 0.3s ease;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Карта */
+.map-section {
+    padding: 40px 0;
+}
+
+.map-container {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .contacts-content {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .gradient-banner {
+        padding: 40px 0;
+        margin-bottom: 40px;
+    }
+    
+    .banner-title {
+        font-size: 28px;
+    }
+    
+    .banner-subtitle {
+        font-size: 16px;
+    }
+    
+    .contacts-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+    
+    .contact-info,
+    .contact-form-section {
+        padding: 20px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .map-section {
+        padding: 30px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .gradient-banner {
+        padding: 30px 0;
+        margin-bottom: 30px;
+    }
+    
+    .banner-title {
+        font-size: 24px;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .contact-icon img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .map-section {
+        padding: 20px 0;
+    }
+}

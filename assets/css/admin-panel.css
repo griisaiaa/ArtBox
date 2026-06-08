@@ -1,0 +1,307 @@
+/* Стили для страницы панели администратора */
+
+/* Заголовок страницы */
+.page-header {
+    margin: 40px 0;
+}
+
+.page-title {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    font-size: 18px;
+    color: var(--gray-text);
+}
+
+/* Статистика */
+.stats-section {
+    margin: 40px 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    min-height: 140px;
+    position: relative;
+}
+
+.stat-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-content {
+    margin-top: auto;
+}
+
+.stat-content h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--gray-text);
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Разделитель */
+.divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 40px 0;
+}
+
+/* Табы управления */
+.admin-tabs {
+    margin: 40px 0;
+}
+
+.tabs-nav {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 15px 30px;
+    background: none;
+    border: none;
+    font-weight: 600;
+    color: var(--text-color);
+    position: relative;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.tab-btn:hover {
+    color: var(--primary-color);
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.tabs-content {
+    padding: 20px 0;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Заголовок панели */
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.panel-title h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.panel-title p {
+    color: var(--gray-text);
+    margin: 0;
+}
+
+/* Таблица */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-background);
+    min-width: 800px;
+}
+
+.admin-table th {
+    background-color: var(--light-gray);
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+
+.btn--primary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-action {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-action.edit {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+}
+
+.btn-action.edit:hover {
+    background-color: var(--border-color);
+}
+
+.btn-action.delete {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-action.delete:hover {
+    background-color: #e05a2b;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .panel-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 28px;
+    }
+    
+    .page-subtitle {
+        font-size: 16px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+        min-height: 120px;
+    }
+    
+    .stat-value {
+        font-size: 24px;
+    }
+    
+    .tabs-nav {
+        flex-direction: column;
+    }
+    
+    .tab-btn {
+        padding: 12px 20px;
+        text-align: left;
+    }
+    
+    .admin-table {
+        font-size: 14px;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-header {
+        margin: 20px 0;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .stats-section,
+    .admin-tabs {
+        margin: 30px 0;
+    }
+    
+    .stat-icon {
+        width: 35px;
+        height: 35px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .stat-icon img {
+        width: 25px;
+        height: 25px;
+    }
+    
+    
+    .btn-action {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+}
