@@ -1,5 +1,3 @@
-// ./assets/js/catalog.js - Страница каталога
-
 import { db, collection, getDocs } from './firebase-config.js';
 
 const Catalog = {
@@ -18,8 +16,6 @@ const Catalog = {
         this.initFilters();
         this.initSorting();
         this.initSearch();
-        this.initCartButtons();
-        this.initFavoriteButtons();
     },
     
     loadProducts: async function() {
@@ -50,11 +46,11 @@ const Catalog = {
         grid.innerHTML = this.filteredProducts.map(product => `
             <div class="product-card" data-id="${product.id}">
                 <button class="product-card__favourite" data-id="${product.id}">
-                    <img src="./assets/img/product-cart-favoruite-icon.png" alt="В избранное">
+                    <img src="assets/img/product-cart-favoruite-icon.png" alt="В избранное">
                 </button>
                 <div class="product-card__image">
                     <a href="product-info.html?id=${product.id}">
-                        <img src="${product.image || './assets/img/product-cart-img1.png'}" alt="${product.name}">
+                        <img src="${product.image || 'assets/img/product-cart-img1.png'}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/150'">
                     </a>
                 </div>
                 <div class="product-card__content">
@@ -69,8 +65,8 @@ const Catalog = {
                     </div>
                     <div class="product-card__footer">
                         <span class="product-card__price">${product.price.toLocaleString()} ₽</span>
-                        <button class="btn btn--cart add-to-cart" data-id="${product.id}">
-                            <img src="./assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
+                        <button class="btn btn--cart add-to-cart-btn" data-id="${product.id}">
+                            <img src="assets/img/product-cart-btn-basket-icon.png" alt="В корзину">
                             В корзину
                         </button>
                     </div>
@@ -87,8 +83,8 @@ const Catalog = {
         let stars = '';
         for (let i = 1; i <= 5; i++) {
             stars += i <= rating ? 
-                '<img src="./assets/img/product-cart-active-star-icon.png" alt="★">' : 
-                '<img src="./assets/img/product-cart-notactive-star-icon.png" alt="☆">';
+                '<img src="assets/img/product-cart-active-star-icon.png" alt="★">' : 
+                '<img src="assets/img/product-cart-notactive-star-icon.png" alt="☆">';
         }
         return stars;
     },
@@ -173,7 +169,7 @@ const Catalog = {
     },
     
     initCartButtons: function() {
-        document.querySelectorAll('.add-to-cart').forEach(btn => {
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
             btn.removeEventListener('click', this.handleAddToCart);
             btn.addEventListener('click', this.handleAddToCart.bind(this));
         });
@@ -194,18 +190,41 @@ const Catalog = {
     
     handleFavorite: async function(e) {
         e.preventDefault();
+        e.stopPropagation();
+        
         const btn = e.currentTarget;
         const productId = btn.dataset.id;
         const isActive = btn.classList.contains('active');
         
-        if (isActive) {
-            await window.App.removeFromFavorites(productId);
-            btn.classList.remove('active');
-            btn.querySelector('img').src = './assets/img/product-cart-favoruite-icon.png';
-        } else {
-            await window.App.addToFavorites(productId);
-            btn.classList.add('active');
-            btn.querySelector('img').src = './assets/img/product-cart-favoruite-icon-active.png';
+        console.log('Catalog favorite clicked - Product:', productId, 'Currently active:', isActive);
+        
+        if (!window.App.currentUser) {
+            alert('Пожалуйста, войдите в аккаунт');
+            const modal = document.getElementById('login-modal');
+            if (modal) modal.style.display = 'flex';
+            return;
+        }
+        
+        btn.style.pointerEvents = 'none';
+        
+        try {
+            if (isActive) {
+                const result = await window.App.removeFromFavorites(productId);
+                if (result) {
+                    btn.classList.remove('active');
+                    btn.querySelector('img').src = 'assets/img/product-cart-favoruite-icon.png';
+                }
+            } else {
+                const result = await window.App.addToFavorites(productId);
+                if (result) {
+                    btn.classList.add('active');
+                    btn.querySelector('img').src = 'assets/img/product-cart-favoruite-icon-active.png';
+                }
+            }
+        } catch (error) {
+            console.error('Error toggling favorite:', error);
+        } finally {
+            btn.style.pointerEvents = 'auto';
         }
     },
     
@@ -216,7 +235,10 @@ const Catalog = {
             const productId = btn.dataset.id;
             if (window.App.favorites.includes(productId)) {
                 btn.classList.add('active');
-                btn.querySelector('img').src = './assets/img/product-cart-favoruite-icon-active.png';
+                btn.querySelector('img').src = 'assets/img/product-cart-favoruite-icon-active.png';
+            } else {
+                btn.classList.remove('active');
+                btn.querySelector('img').src = 'assets/img/product-cart-favoruite-icon.png';
             }
         });
     }
