@@ -1,5 +1,3 @@
-// assets/js/product-info.js - Страница товара
-
 const ProductInfo = {
     productId: null,
     product: null,
@@ -98,8 +96,6 @@ const ProductInfo = {
             }
             html += '</ul>';
             specsPanel.innerHTML = html;
-        } else if (specsPanel) {
-            specsPanel.innerHTML = '<p>Характеристики товара временно отсутствуют</p>';
         }
     },
     
@@ -141,30 +137,79 @@ const ProductInfo = {
     
     initFavorite: function() {
         const btn = document.getElementById('favorite-btn');
-        if (btn) {
-            btn.addEventListener('click', async () => {
-                const isActive = btn.classList.contains('active');
+        if (!btn) return;
+        
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        
+        newBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Product page favorite clicked');
+            
+            if (!window.App.currentUser) {
+                alert('Пожалуйста, войдите в аккаунт');
+                const modal = document.getElementById('login-modal');
+                if (modal) modal.style.display = 'flex';
+                return;
+            }
+            
+            const isActive = newBtn.classList.contains('active');
+            const img = newBtn.querySelector('img');
+            
+            newBtn.style.pointerEvents = 'none';
+            newBtn.style.opacity = '0.5';
+            
+            try {
                 if (isActive) {
-                    await window.App.removeFromFavorites(this.productId);
-                    btn.classList.remove('active');
-                    btn.querySelector('img').src = 'assets/img/tovar-info-favourite-icon.png';
+                    const result = await window.App.removeFromFavorites(this.productId);
+                    if (result) {
+                        newBtn.classList.remove('active');
+                        if (img) img.src = 'assets/img/tovar-info-favourite-icon.png';
+                    }
                 } else {
-                    await window.App.addToFavorites(this.productId);
-                    btn.classList.add('active');
-                    btn.querySelector('img').src = 'assets/img/tovar-info-favourite-icon-active.png';
+                    const result = await window.App.addToFavorites(this.productId);
+                    if (result) {
+                        newBtn.classList.add('active');
+                        if (img) img.src = 'assets/img/tovar-info-favourite-icon-active.png';
+                    }
                 }
-            });
-        }
+            } catch (error) {
+                console.error('Error toggling favorite:', error);
+            } finally {
+                newBtn.style.pointerEvents = 'auto';
+                newBtn.style.opacity = '1';
+            }
+        });
     },
     
     checkFavorite: function() {
-        if (window.App.currentUser && window.App.isFavorite(this.productId)) {
-            const btn = document.getElementById('favorite-btn');
-            if (btn) {
-                btn.classList.add('active');
-                btn.querySelector('img').src = 'assets/img/tovar-info-favourite-icon-active.png';
-            }
+        console.log('Checking favorite status for product:', this.productId);
+        
+        if (!window.App.currentUser) {
+            console.log('No user logged in');
+            return;
         }
+        
+        const checkInterval = setInterval(() => {
+            if (window.App.favorites !== undefined) {
+                clearInterval(checkInterval);
+                const isFav = window.App.favorites.includes(this.productId);
+                console.log('Is product in favorites?', isFav);
+                
+                const btn = document.getElementById('favorite-btn');
+                if (btn && isFav) {
+                    btn.classList.add('active');
+                    const img = btn.querySelector('img');
+                    if (img) img.src = 'assets/img/tovar-info-favourite-icon-active.png';
+                }
+            }
+        }, 100);
+        
+        setTimeout(() => {
+            clearInterval(checkInterval);
+        }, 3000);
     },
     
     initTabs: function() {
