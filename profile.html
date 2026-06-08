@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtBox - Личный кабинет</title>
+    <link rel="stylesheet" href="./assets/css/global.css">
+    <link rel="stylesheet" href="./assets/css/profile.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="index.html" class="logo">
+                    <span class="logo__text">ArtBox</span>
+                </a>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="catalog.html" class="nav__link">Каталог</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="contacts.html" class="nav__link">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header__actions">
+                    <div class="search">
+                        <input type="text" class="search__input" placeholder="Поиск...">
+                        <button class="search__btn">
+                            <img src="./assets/img/header-search-input-icon.png" alt="Поиск" class="search__icon">
+                        </button>
+                    </div>
+                    
+                    <div class="actions">
+                        <button class="action-btn" id="profile-btn">
+                            <img src="./assets/img/header-profile-icon.png" alt="Профиль" class="action-icon">
+                        </button>
+                        <button class="action-btn" id="favorites-btn">
+                            <img src="./assets/img/header-favoruite-icon.png" alt="Избранное" class="action-icon">
+                        </button>
+                        <button class="action-btn" id="cart-btn">
+                            <img src="./assets/img/header-basket-icon.png" alt="Корзина" class="action-icon">
+                        </button>
+                    </div>
+                    
+                    <button class="burger" id="burger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <h1 class="profile-title">Личный кабинет</h1>
+            
+            <div class="profile-content">
+                <aside class="profile-sidebar">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <img src="./assets/img/profile-img.png" alt="Аватар пользователя">
+                        </div>
+                        <div class="user-details">
+                            <h3 class="user-name" id="user-name">Загрузка...</h3>
+                            <p class="user-email" id="user-email">loading@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="user-divider"></div>
+                    
+                    <nav class="profile-nav">
+                        <ul class="profile-nav__list">
+                            <li class="profile-nav__item active" data-section="orders">
+                                <a href="#" class="profile-nav__link">
+                                    <span class="profile-nav__icon">
+                                        <img src="./assets/img/profile-active-tabs-icon.png" alt="Мои заказы">
+                                    </span>
+                                    <span class="profile-nav__text">Мои заказы</span>
+                                </a>
+                            </li>
+                            <li class="profile-nav__item" data-section="favorites">
+                                <a href="#" class="profile-nav__link">
+                                    <span class="profile-nav__icon">
+                                        <img src="./assets/img/profile-notactive-tabs-icon1.png" alt="Избранное">
+                                    </span>
+                                    <span class="profile-nav__text">Избранное</span>
+                                </a>
+                            </li>
+                            <li class="profile-nav__item" data-section="settings">
+                                <a href="#" class="profile-nav__link">
+                                    <span class="profile-nav__icon">
+                                        <img src="./assets/img/profile-notactive-tabs-icon2.png" alt="Настройки">
+                                    </span>
+                                    <span class="profile-nav__text">Настройки</span>
+                                </a>
+                            </li>
+                            <li class="profile-nav__item" data-section="logout">
+                                <a href="#" class="profile-nav__link" id="logout-btn">
+                                    <span class="profile-nav__icon">
+                                        <img src="./assets/img/profile-exit-icon.png" alt="Выход">
+                                    </span>
+                                    <span class="profile-nav__text-exit">Выход</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+                
+                <section class="profile-main" id="profile-main">
+                    <h2 class="profile-section-title">История заказов</h2>
+                    <div class="orders-list" id="orders-list">
+                        <!-- Заказы загружаются через JS -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <div class="footer-logo">
+                        <img src="./assets/img/footer-paint-icon.png" alt="ArtBox" class="footer-logo__icon">
+                        <span class="footer-logo__text">ArtBox</span>
+                    </div>
+                    <p class="footer__description">Все для творчества в одном месте.</p>
+                </div>
+                
+                <div class="footer__nav">
+                    <div class="footer__column">
+                        <h3 class="footer__title">Каталог</h3>
+                        <ul class="footer__list">
+                            <li><a href="catalog.html?category=paints" class="footer__link">Краски</a></li>
+                            <li><a href="catalog.html?category=brushes" class="footer__link">Кисти</a></li>
+                            <li><a href="catalog.html?category=canvases" class="footer__link">Холсты</a></li>
+                            <li><a href="catalog.html?category=stationery" class="footer__link">Канцелярия</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h3 class="footer__title">Информация</h3>
+                        <ul class="footer__list">
+                            <li><a href="about.html" class="footer__link">О нас</a></li>
+                            <li><a href="contacts.html" class="footer__link">Контакты</a></li>
+                            <li><a href="#" class="footer__link">Доставка и оплата</a></li>
+                            <li><a href="#" class="footer__link">Возврат товара</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h3 class="footer__title">Контакты</h3>
+                        <ul class="footer__list">
+                            <li><a href="tel:79991234567" class="footer__link">+7 (999) 123-45-67</a></li>
+                            <li><a href="mailto:info@artbox.ru" class="footer__link">info@artbox.ru</a></li>
+                            <li><a href="#" class="footer__link">Пн-Пт: 9:00 - 18:00</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 ArtBox. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="login-modal">
+        <div class="modal__content">
+            <button class="modal__close" id="close-login-modal">&times;</button>
+            <div class="modal__tabs">
+                <button class="modal__tab modal__tab--active" data-tab="login">Вход</button>
+                <button class="modal__tab" data-tab="register">Регистрация</button>
+            </div>
+            <div class="modal__body">
+                <form class="modal__form modal__form--active" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email" class="form-label">Email</label>
+                        <input type="email" id="login-email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password" class="form-label">Пароль</label>
+                        <input type="password" id="login-password" class="form-input" placeholder="Пароль" required>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full">Войти</button>
+                </form>
+                <form class="modal__form" id="register-form">
+                    <div class="form-group">
+                        <label for="register-name" class="form-label">Имя</label>
+                        <input type="text" id="register-name" class="form-input" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email" class="form-label">Email</label>
+                        <input type="email" id="register-email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password" class="form-label">Пароль</label>
+                        <input type="password" id="register-password" class="form-input" placeholder="Пароль (мин. 6 символов)" required>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full">Зарегистрироваться</button>
+                </form>
+                <nav class="profile-nav">
+    <ul class="profile-nav__list">
+        <li class="profile-nav__item active" data-section="orders">
+            <a href="#" class="profile-nav__link">
+                <span class="profile-nav__icon">
+                    <img src="assets/img/profile-active-tabs-icon.png" alt="Мои заказы">
+                </span>
+                <span class="profile-nav__text">Мои заказы</span>
+            </a>
+        </li>
+        <li class="profile-nav__item" data-section="favorites">
+            <a href="#" class="profile-nav__link">
+                <span class="profile-nav__icon">
+                    <img src="assets/img/profile-notactive-tabs-icon1.png" alt="Избранное">
+                </span>
+                <span class="profile-nav__text">Избранное</span>
+            </a>
+        </li>
+        <li class="profile-nav__item" data-section="settings">
+            <a href="#" class="profile-nav__link">
+                <span class="profile-nav__icon">
+                    <img src="assets/img/profile-notactive-tabs-icon2.png" alt="Настройки">
+                </span>
+                <span class="profile-nav__text">Настройки</span>
+            </a>
+        </li>
+        <li class="profile-nav__item" data-section="logout">
+            <a href="#" class="profile-nav__link" id="logout-btn">
+                <span class="profile-nav__icon">
+                    <img src="assets/img/profile-exit-icon.png" alt="Выход">
+                </span>
+                <span class="profile-nav__text-exit">Выход</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+                <section class="profile-main" id="profile-main">
+    <h2 class="profile-section-title">Мои заказы</h2>
+    <div class="orders-list" id="orders-list"></div>
+</section>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./assets/js/script.js"></script>
+    <script type="module" src="./assets/js/profile.js"></script>
+</body>
+</html>
