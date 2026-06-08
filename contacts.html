@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtBox - Контакты</title>
+    <link rel="stylesheet" href="./assets/css/global.css">
+    <link rel="stylesheet" href="./assets/css/contacts.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="index.html" class="logo">
+                    <span class="logo__text">ArtBox</span>
+                </a>
+                <nav class="nav" id="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="catalog.html" class="nav__link">Каталог</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="contacts.html" class="nav__link active">Контакты</a></li>
+                    </ul>
+                </nav>
+                <div class="header__actions">
+                    <div class="search">
+                        <input type="text" class="search__input" placeholder="Поиск...">
+                        <button class="search__btn">
+                            <img src="./assets/img/header-search-input-icon.png" alt="Поиск" class="search__icon">
+                        </button>
+                    </div>
+                    <div class="actions">
+                        <button class="action-btn" id="profile-btn">
+                            <img src="./assets/img/header-profile-icon.png" alt="Профиль" class="action-icon">
+                        </button>
+                        <button class="action-btn" id="favorites-btn">
+                            <img src="./assets/img/header-favoruite-icon.png" alt="Избранное" class="action-icon">
+                        </button>
+                        <button class="action-btn" id="cart-btn">
+                            <img src="./assets/img/header-basket-icon.png" alt="Корзина" class="action-icon">
+                        </button>
+                    </div>
+                    <button class="burger" id="burger">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="gradient-banner">
+            <div class="container">
+                <div class="banner-content">
+                    <h1 class="banner-title">Контакты</h1>
+                    <p class="banner-subtitle">Свяжитесь с нами любым удобным способом — мы всегда рады помочь!</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="contacts-content">
+                <section class="contact-info">
+                    <h2 class="section-title">Как с нами связаться</h2>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon address-icon">
+                                <img src="./assets/img/contacts-info-img1.png" alt="Адрес">
+                            </div>
+                            <div class="contact-text">
+                                <h3>Адрес</h3>
+                                <p>г. Москва, ул. Творческая, д. 15<br>ТЦ "Художник", 2 этаж</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon phone-icon">
+                                <img src="./assets/img/contacts-info-img2.png" alt="Телефон">
+                            </div>
+                            <div class="contact-text">
+                                <h3>Телефон</h3>
+                                <p><a href="tel:+74951234567">+7 (495) 123-45-67</a><br><a href="tel:+78005553535">+7 (800) 555-35-35</a> (бесплатно)</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon email-icon">
+                                <img src="./assets/img/contacts-info-img3.png" alt="Email">
+                            </div>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p><a href="mailto:info@artbox.ru">info@artbox.ru</a><br><a href="mailto:support@artbox.ru">support@artbox.ru</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon hours-icon">
+                                <img src="./assets/img/contacts-info-img4.png" alt="Часы работы">
+                            </div>
+                            <div class="contact-text">
+                                <h3>Часы работы</h3>
+                                <p>Пн-Пт: 10:00 - 20:00<br>Сб-Вс: 11:00 - 19:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="contact-form-section">
+                    <h2 class="section-title">Напишите нам</h2>
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Ваше имя</label>
+                            <input type="text" id="name" class="form-input" placeholder="Иван Иванов" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Ваш email</label>
+                            <input type="email" id="email" class="form-input" placeholder="ivan@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Ваше сообщение</label>
+                            <textarea id="message" class="form-textarea" placeholder="Расскажите чем мы вам можем помочь..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full">Отправить сообщение</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <div class="footer-logo">
+                        <img src="./assets/img/footer-paint-icon.png" alt="ArtBox" class="footer-logo__icon">
+                        <span class="footer-logo__text">ArtBox</span>
+                    </div>
+                    <p class="footer__description">Все для творчества в одном месте.</p>
+                </div>
+                <div class="footer__nav">
+                    <div class="footer__column">
+                        <h3 class="footer__title">Каталог</h3>
+                        <ul class="footer__list">
+                            <li><a href="catalog.html?category=paints" class="footer__link">Краски</a></li>
+                            <li><a href="catalog.html?category=brushes" class="footer__link">Кисти</a></li>
+                            <li><a href="catalog.html?category=canvases" class="footer__link">Холсты</a></li>
+                            <li><a href="catalog.html?category=stationery" class="footer__link">Канцелярия</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h3 class="footer__title">Информация</h3>
+                        <ul class="footer__list">
+                            <li><a href="about.html" class="footer__link">О нас</a></li>
+                            <li><a href="contacts.html" class="footer__link">Контакты</a></li>
+                            <li><a href="#" class="footer__link">Доставка и оплата</a></li>
+                            <li><a href="#" class="footer__link">Возврат товара</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h3 class="footer__title">Контакты</h3>
+                        <ul class="footer__list">
+                            <li><a href="tel:79991234567" class="footer__link">+7 (999) 123-45-67</a></li>
+                            <li><a href="mailto:info@artbox.ru" class="footer__link">info@artbox.ru</a></li>
+                            <li><a href="#" class="footer__link">Пн-Пт: 9:00 - 18:00</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 ArtBox. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="login-modal">
+        <div class="modal__content">
+            <button class="modal__close" id="close-login-modal">&times;</button>
+            <div class="modal__tabs">
+                <button class="modal__tab modal__tab--active" data-tab="login">Вход</button>
+                <button class="modal__tab" data-tab="register">Регистрация</button>
+            </div>
+            <div class="modal__body">
+                <form class="modal__form modal__form--active" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email" class="form-label">Email</label>
+                        <input type="email" id="login-email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password" class="form-label">Пароль</label>
+                        <input type="password" id="login-password" class="form-input" placeholder="Пароль" required>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full">Войти</button>
+                </form>
+                <form class="modal__form" id="register-form">
+                    <div class="form-group">
+                        <label for="register-name" class="form-label">Имя</label>
+                        <input type="text" id="register-name" class="form-input" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email" class="form-label">Email</label>
+                        <input type="email" id="register-email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password" class="form-label">Пароль</label>
+                        <input type="password" id="register-password" class="form-input" placeholder="Пароль (мин. 6 символов)" required>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./assets/js/script.js"></script>
+    <script>
+        document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
