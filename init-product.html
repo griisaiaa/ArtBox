@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Загрузка товаров</title>
+    <style>
+        body { font-family: Arial; padding: 20px; text-align: center; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Загрузка товаров в Firebase...</h1>
+    <div id="status"></div>
+    
+    <script type="module">
+        import { db, collection, addDoc, getDocs } from './assets/js/firebase-config.js';
+        
+        const products = [
+            {
+                name: "Набор акриловых красок 24 цвета",
+                category: "paints",
+                brand: "artmaster",
+                price: 1299,
+                oldPrice: 1699,
+                rating: 4,
+                reviews: 150,
+                image: "./assets/img/product-cart-img1.png",
+                inStock: 45,
+                description: "Профессиональный набор акриловых красок. 24 ярких цвета. Идеально подходит для художников любого уровня."
+            },
+            {
+                name: "Профессиональные кисти для живописи, 12 шт",
+                category: "brushes",
+                brand: "proart",
+                price: 899,
+                rating: 4,
+                reviews: 200,
+                image: "./assets/img/product-cart-img2.png",
+                inStock: 23,
+                description: "Набор профессиональных кистей. 12 штук разных размеров. Подходят для акрила, масла и акварели."
+            },
+            {
+                name: "Акварельные краски 36 цветов",
+                category: "paints",
+                brand: "artistpro",
+                price: 1599,
+                rating: 4,
+                reviews: 107,
+                image: "./assets/img/product-cart-img4.png",
+                inStock: 12,
+                description: "Набор акварельных красок. 36 насыщенных цветов. Отличная растворимость."
+            },
+            {
+                name: "Холст на подрамнике 40x50 см",
+                category: "canvases",
+                brand: "creativeline",
+                price: 549,
+                rating: 4,
+                reviews: 90,
+                image: "./assets/img/product-cart-img3.png",
+                inStock: 67,
+                description: "Холст на подрамнике. Размер 40x50 см. Льняное полотно."
+            }
+        ];
+        
+        const statusDiv = document.getElementById('status');
+        
+        try {
+            const existingProducts = await getDocs(collection(db, "products"));
+            
+            if (existingProducts.empty) {
+                for (const product of products) {
+                    await addDoc(collection(db, "products"), product);
+                    statusDiv.innerHTML += `<p class="success">✓ Товар "${product.name}" добавлен</p>`;
+                }
+                statusDiv.innerHTML += `<p class="success"><strong>✅ Все товары успешно загружены!</strong></p>`;
+            } else {
+                statusDiv.innerHTML += `<p class="success">✅ Товары уже существуют в базе данных (${existingProducts.size} шт.)</p>`;
+            }
+            
+            statusDiv.innerHTML += `<p><br><a href="catalog.html">Перейти в каталог →</a></p>`;
+        } catch (error) {
+            statusDiv.innerHTML += `<p class="error">❌ Ошибка: ${error.message}</p>`;
+        }
+    </script>
+</body>
+</html>
