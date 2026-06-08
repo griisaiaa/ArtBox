@@ -57,7 +57,6 @@ window.App = {
                 products.push({ id: doc.id, ...doc.data() });
             });
             
-            // Популярные товары (первые 4)
             const popularGrid = document.getElementById('popular-grid');
             if (popularGrid && products.length > 0) {
                 popularGrid.innerHTML = products.slice(0, 4).map(product => `
@@ -92,7 +91,6 @@ window.App = {
                 `).join('');
             }
             
-            // Хиты продаж (следующие 4)
             const hitsGrid = document.getElementById('hits-grid');
             if (hitsGrid && products.length > 4) {
                 hitsGrid.innerHTML = products.slice(4, 8).map(product => `
@@ -357,13 +355,11 @@ window.App = {
         console.log('Loading user data for:', this.currentUser.uid);
         
         try {
-            // Загрузка корзины
             const cartRef = doc(db, "carts", this.currentUser.uid);
             const cartDoc = await getDoc(cartRef);
             this.cart = cartDoc.exists() ? cartDoc.data().items || [] : [];
             console.log('Cart loaded:', this.cart.length);
             
-            // Загрузка избранного
             const userRef = doc(db, "users", this.currentUser.uid);
             const userDoc = await getDoc(userRef);
             
@@ -382,7 +378,9 @@ window.App = {
                 console.log('Created new user document');
             }
             
-            this.updateAllFavoriteIcons();
+            setTimeout(() => {
+                this.updateAllFavoriteIcons();
+            }, 100);
             
         } catch (error) {
             console.error('Error loading user data:', error);
@@ -616,7 +614,7 @@ window.App = {
             return false;
         }
         
-        await this.getCart(); // Обновляем корзину
+        await this.getCart();
         
         if (this.cart.length === 0) {
             alert('Корзина пуста');
@@ -640,7 +638,6 @@ window.App = {
         try {
             const docRef = await addDoc(collection(db, "orders"), order);
             console.log('Order created with ID:', docRef.id);
-            
             await this.clearCart();
             alert('✓ Заказ успешно оформлен!');
             return true;
@@ -657,18 +654,37 @@ window.App = {
         console.log('Getting orders for user:', this.currentUser.uid);
         
         try {
-            const q = query(
-                collection(db, "orders"),
-                where("userId", "==", this.currentUser.uid),
-                orderBy("createdAt", "desc")
-            );
-            const snapshot = await getDocs(q);
-            const orders = [];
-            snapshot.forEach(doc => {
-                orders.push({ id: doc.id, ...doc.data() });
-            });
-            console.log('Orders loaded:', orders.length);
-            return orders;
+            // Сначала пробуем с сортировкой
+            try {
+                const q = query(
+                    collection(db, "orders"),
+                    where("userId", "==", this.currentUser.uid),
+                    orderBy("createdAt", "desc")
+                );
+                const snapshot = await getDocs(q);
+                const orders = [];
+                snapshot.forEach(doc => {
+                    orders.push({ id: doc.id, ...doc.data() });
+                });
+                console.log('Orders loaded with index:', orders.length);
+                return orders;
+            } catch (indexError) {
+                // Если индекса нет, загружаем без сортировки
+                console.log('Index not ready, loading without sorting');
+                const q = query(
+                    collection(db, "orders"),
+                    where("userId", "==", this.currentUser.uid)
+                );
+                const snapshot = await getDocs(q);
+                const orders = [];
+                snapshot.forEach(doc => {
+                    orders.push({ id: doc.id, ...doc.data() });
+                });
+                // Сортируем на клиенте
+                orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                console.log('Orders loaded without index:', orders.length);
+                return orders;
+            }
         } catch (error) {
             console.error('Error getting orders:', error);
             return [];
