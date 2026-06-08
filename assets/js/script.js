@@ -57,7 +57,6 @@ window.App = {
                 products.push({ id: doc.id, ...doc.data() });
             });
             
-            // Популярные товары (первые 4)
             const popularGrid = document.getElementById('popular-grid');
             if (popularGrid && products.length > 0) {
                 popularGrid.innerHTML = products.slice(0, 4).map(product => `
@@ -92,7 +91,6 @@ window.App = {
                 `).join('');
             }
             
-            // Хиты продаж (следующие 4)
             const hitsGrid = document.getElementById('hits-grid');
             if (hitsGrid && products.length > 4) {
                 hitsGrid.innerHTML = products.slice(4, 8).map(product => `
@@ -165,25 +163,43 @@ window.App = {
     
     handleFavorite: async function(e) {
         e.preventDefault();
+        e.stopPropagation();
+        
         const btn = e.currentTarget;
         const productId = btn.dataset.id;
         const isActive = btn.classList.contains('active');
         
-        if (!this.currentUser) {
+        console.log('Favorite clicked - Product:', productId, 'Currently active:', isActive);
+        
+        if (!window.App.currentUser) {
             alert('Пожалуйста, войдите в аккаунт');
             const modal = document.getElementById('login-modal');
             if (modal) modal.style.display = 'flex';
             return;
         }
         
-        if (isActive) {
-            await this.removeFromFavorites(productId);
-            btn.classList.remove('active');
-            btn.querySelector('img').src = 'assets/img/product-cart-favoruite-icon.png';
-        } else {
-            await this.addToFavorites(productId);
-            btn.classList.add('active');
-            btn.querySelector('img').src = 'assets/img/product-cart-favoruite-icon-active.png';
+        btn.style.pointerEvents = 'none';
+        btn.style.opacity = '0.5';
+        
+        try {
+            if (isActive) {
+                await window.App.removeFromFavorites(productId);
+                btn.classList.remove('active');
+                const img = btn.querySelector('img');
+                if (img) img.src = 'assets/img/product-cart-favoruite-icon.png';
+                console.log('Removed from favorites');
+            } else {
+                await window.App.addToFavorites(productId);
+                btn.classList.add('active');
+                const img = btn.querySelector('img');
+                if (img) img.src = 'assets/img/product-cart-favoruite-icon-active.png';
+                console.log('Added to favorites');
+            }
+        } catch (error) {
+            console.error('Error toggling favorite:', error);
+        } finally {
+            btn.style.pointerEvents = 'auto';
+            btn.style.opacity = '1';
         }
     },
     
@@ -357,13 +373,11 @@ window.App = {
         console.log('Loading user data for:', this.currentUser.uid);
         
         try {
-            // Загрузка корзины
             const cartRef = doc(db, "carts", this.currentUser.uid);
             const cartDoc = await getDoc(cartRef);
             this.cart = cartDoc.exists() ? cartDoc.data().items || [] : [];
             console.log('Cart loaded:', this.cart.length);
             
-            // Загрузка избранного
             const userRef = doc(db, "users", this.currentUser.uid);
             const userDoc = await getDoc(userRef);
             
@@ -382,7 +396,9 @@ window.App = {
                 console.log('Created new user document');
             }
             
-            this.updateAllFavoriteIcons();
+            setTimeout(() => {
+                this.updateAllFavoriteIcons();
+            }, 100);
             
         } catch (error) {
             console.error('Error loading user data:', error);
@@ -432,6 +448,10 @@ window.App = {
                 favoriteBtn.classList.add('active');
                 const img = favoriteBtn.querySelector('img');
                 if (img) img.src = 'assets/img/tovar-info-favourite-icon-active.png';
+            } else if (favoriteBtn) {
+                favoriteBtn.classList.remove('active');
+                const img = favoriteBtn.querySelector('img');
+                if (img) img.src = 'assets/img/tovar-info-favourite-icon.png';
             }
         }
     },
@@ -551,6 +571,8 @@ window.App = {
     },
     
     addToFavorites: async function(productId) {
+        console.log('addToFavorites called for product:', productId);
+        
         if (!this.currentUser) {
             const modal = document.getElementById('login-modal');
             if (modal) modal.style.display = 'flex';
@@ -559,38 +581,66 @@ window.App = {
         }
         
         if (this.favorites.includes(productId)) {
+            console.log('Product already in favorites, skipping');
             return true;
         }
         
         this.favorites.push(productId);
+        console.log('Favorites after push:', this.favorites);
         
         try {
             const userRef = doc(db, "users", this.currentUser.uid);
             await updateDoc(userRef, { favorites: this.favorites });
-            console.log('Favorites saved:', this.favorites);
+            console.log('Favorites saved to Firebase');
             alert('✓ Товар добавлен в избранное');
             this.updateAllFavoriteIcons();
             return true;
         } catch (error) {
             console.error('Error adding to favorites:', error);
-            return false;
+            try {
+                await setDoc(doc(db, "users", this.currentUser.uid), {
+                    uid: this.currentUser.uid,
+                    name: this.currentUser.displayName || '',
+                    email: this.currentUser.email,
+                    favorites: this.favorites,
+                    createdAt: new Date().toISOString()
+                });
+                console.log('User document created with favorites');
+                alert('✓ Товар добавлен в избранное');
+                this.updateAllFavoriteIcons();
+                return true;
+            } catch (err) {
+                console.error('Error creating user doc:', err);
+                this.favorites = this.favorites.filter(id => id !== productId);
+                alert('Ошибка при добавлении в избранное');
+                return false;
+            }
         }
     },
     
     removeFromFavorites: async function(productId) {
+        console.log('removeFromFavorites called for product:', productId);
+        
         if (!this.currentUser) return false;
         
+        if (!this.favorites.includes(productId)) {
+            console.log('Product not in favorites, skipping');
+            return true;
+        }
+        
         this.favorites = this.favorites.filter(id => id !== productId);
+        console.log('Favorites after remove:', this.favorites);
         
         try {
             const userRef = doc(db, "users", this.currentUser.uid);
             await updateDoc(userRef, { favorites: this.favorites });
-            console.log('Favorites after remove:', this.favorites);
+            console.log('Favorites removed from Firebase');
             alert('✓ Товар удален из избранного');
             this.updateAllFavoriteIcons();
             return true;
         } catch (error) {
             console.error('Error removing from favorites:', error);
+            alert('Ошибка при удалении из избранного');
             return false;
         }
     },
@@ -616,7 +666,7 @@ window.App = {
             return false;
         }
         
-        await this.getCart(); // Обновляем корзину
+        await this.getCart();
         
         if (this.cart.length === 0) {
             alert('Корзина пуста');
@@ -640,7 +690,6 @@ window.App = {
         try {
             const docRef = await addDoc(collection(db, "orders"), order);
             console.log('Order created with ID:', docRef.id);
-            
             await this.clearCart();
             alert('✓ Заказ успешно оформлен!');
             return true;
